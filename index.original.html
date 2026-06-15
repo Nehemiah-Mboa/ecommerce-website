@@ -1,0 +1,1305 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variegated Houseplants</title>
+    <style>
+        /* Base Reset & Colors */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-green: #1b3313;
+            --light-green: #8fbc8f;
+            --cream: #FAF8F5;
+            --charcoal: #222222;
+            --white: #ffffff;
+            --gold: #c5a059;
+        }
+
+        body {
+            background-color: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(27, 51, 19, 0.7), rgba(27, 51, 19, 0.7)), 
+                        url('https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&q=80&w=1600') no-repeat center center/cover;
+            height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 1.5rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background-color: var(--gold);
+            color: var(--white);
+            padding: 0.9rem 2.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+        }
+
+        .cta-btn:hover {
+            background-color: transparent;
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        /* Section Global Styles */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.05rem;
+        }
+
+        /* Product Catalog Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.07);
+        }
+
+        .product-img-container {
+            position: relative;
+            width: 100%;
+            height: 380px;
+            overflow: hidden;
+            background-color: #f5f5f5;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+
+        .rarity-tag {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 2px;
+        }
+
+        .product-info {
+            padding: 2rem;
+        }
+
+        .product-title {
+            font-size: 1.4rem;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+
+        .product-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            height: 45px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            display: block;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+
+        .buy-btn {
+            display: block;
+            width: 100%;
+            background-color: #25D366; /* WhatsApp Green */
+            color: var(--white);
+            text-align: center;
+            padding: 1rem;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .buy-btn:hover {
+            background-color: #128C7E;
+        }
+
+        /* Why Variegation Section */
+        .about-section {
+            background-color: var(--white);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .about-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4rem;
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-img {
+            flex: 1;
+            min-width: 300px;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .about-content {
+            flex: 1.2;
+            min-width: 300px;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        /* Guarantees Section */
+        .guarantees {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .guarantee-card {
+            background-color: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .guarantee-card h3 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 400;
+        }
+
+        .guarantee-card p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 5rem 2rem 3rem;
+            margin-top: 6rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 3rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding-bottom: 4rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-brand {
+            max-width: 400px;
+        }
+
+        .footer-brand h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.7);
+            font-weight: 300;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-share {
+            min-width: 260px;
+        }
+
+        .footer-share h4 {
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .share-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .share-btn {
+            display: inline-block;
+            padding: 0.85rem 1rem;
+            background-color: rgba(255,255,255,0.08);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.12);
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+        }
+
+        .share-btn:hover {
+            background-color: rgba(255,255,255,0.16);
+        }
+
+        .footer-links ul li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links ul li a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            font-weight: 300;
+        }
+
+        /* Contact Us Section */
+        #contact {
+            background: linear-gradient(135deg, var(--primary-green) 0%, rgba(27, 51, 19, 0.9) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .contact-description {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        .contact-whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background-color: #25D366;
+            color: var(--white);
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-whatsapp-btn:hover {
+            background-color: #1fae50;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .contact-whatsapp-btn:active {
+            transform: translateY(0);
+        }
+
+        .whatsapp-icon {
+            font-size: 1.3rem;
+        }
+
+        .contact-info {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-info p {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Custom Specimen Request Section */
+        .custom-request-section {
+            margin-top: 3.5rem;
+            padding: 2.5rem;
+            background-color: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(197, 160, 89, 0.3);
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .custom-request-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .custom-request-section p {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            margin-bottom: 1.8rem;
+            line-height: 1.6;
+        }
+
+        .custom-request-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background-color: var(--gold);
+            color: var(--primary-green);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .custom-request-btn:hover {
+            background-color: #dab974;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(197, 160, 89, 0.4);
+        }
+
+        .custom-request-btn:active {
+            transform: translateY(0);
+        }
+
+        .request-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Shipping Location Selector */
+        .shipping-selector-container {
+            background-color: var(--white);
+            border-bottom: 2px solid var(--gold);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 60px;
+            z-index: 999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .shipping-selector-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .shipping-selector-label {
+            font-weight: 600;
+            color: var(--primary-green);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .shipping-selector-select {
+            padding: 0.7rem 1rem;
+            border: 2px solid var(--light-green);
+            border-radius: 4px;
+            font-size: 0.95rem;
+            color: var(--charcoal);
+            background-color: var(--white);
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .shipping-selector-select:hover,
+        .shipping-selector-select:focus {
+            border-color: var(--gold);
+            outline: none;
+        }
+
+        .shipping-selector-select option {
+            color: var(--charcoal);
+            background-color: var(--white);
+        }
+
+        .shipping-selector-select optgroup {
+            font-weight: 600;
+            color: var(--primary-green);
+            background-color: var(--cream);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .nav-links {
+                gap: 1.5rem;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            section {
+                padding: 4rem 1.5rem;
+            }
+            .shipping-selector-container {
+                padding: 1rem 1.5rem;
+                top: 50px;
+            }
+            .shipping-selector-wrapper {
+                gap: 1rem;
+            }
+            .shipping-selector-label {
+                font-size: 0.85rem;
+            }
+            .shipping-selector-select {
+                padding: 0.6rem 0.8rem;
+                font-size: 0.9rem;
+            }
+            #contact {
+                padding: 3rem 1.5rem;
+            }
+            #contact h2 {
+                font-size: 2rem;
+            }
+            .contact-description {
+                font-size: 1rem;
+            }
+            .contact-whatsapp-btn {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+            .custom-request-section {
+                margin-top: 2rem;
+                padding: 1.5rem;
+            }
+            .custom-request-section h3 {
+                font-size: 1.2rem;
+            }
+            .custom-request-section p {
+                font-size: 0.9rem;
+            }
+            .custom-request-btn {
+                padding: 0.9rem 1.8rem;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header>
+        <div class="navbar">
+            <a href="#" class="logo">VARIEGATED GALLERY</a>
+            <ul class="nav-links">
+                <li><a href="#shop">The Collection</a></li>
+                <li><a href="#about">The Science</a></li>
+                <li><a href="#guarantees">White Glove Shipping</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Shipping Location Selector -->
+    <div class="shipping-selector-container">
+        <div class="shipping-selector-wrapper">
+            <label class="shipping-selector-label">📍 Shipping to:</label>
+            <select id="shippingLocation" class="shipping-selector-select">
+                <option value="">-- Select Your Region --</option>
+                
+                <optgroup label="🇺🇸 USA (States)">
+                    <option value="USA - Alabama">Alabama</option>
+                    <option value="USA - Alaska">Alaska</option>
+                    <option value="USA - Arizona">Arizona</option>
+                    <option value="USA - Arkansas">Arkansas</option>
+                    <option value="USA - California">California</option>
+                    <option value="USA - Colorado">Colorado</option>
+                    <option value="USA - Connecticut">Connecticut</option>
+                    <option value="USA - Delaware">Delaware</option>
+                    <option value="USA - Florida">Florida</option>
+                    <option value="USA - Georgia">Georgia</option>
+                    <option value="USA - Hawaii">Hawaii</option>
+                    <option value="USA - Idaho">Idaho</option>
+                    <option value="USA - Illinois">Illinois</option>
+                    <option value="USA - Indiana">Indiana</option>
+                    <option value="USA - Iowa">Iowa</option>
+                    <option value="USA - Kansas">Kansas</option>
+                    <option value="USA - Kentucky">Kentucky</option>
+                    <option value="USA - Louisiana">Louisiana</option>
+                    <option value="USA - Maine">Maine</option>
+                    <option value="USA - Maryland">Maryland</option>
+                    <option value="USA - Massachusetts">Massachusetts</option>
+                    <option value="USA - Michigan">Michigan</option>
+                    <option value="USA - Minnesota">Minnesota</option>
+                    <option value="USA - Mississippi">Mississippi</option>
+                    <option value="USA - Missouri">Missouri</option>
+                    <option value="USA - Montana">Montana</option>
+                    <option value="USA - Nebraska">Nebraska</option>
+                    <option value="USA - Nevada">Nevada</option>
+                    <option value="USA - New Hampshire">New Hampshire</option>
+                    <option value="USA - New Jersey">New Jersey</option>
+                    <option value="USA - New Mexico">New Mexico</option>
+                    <option value="USA - New York">New York</option>
+                    <option value="USA - North Carolina">North Carolina</option>
+                    <option value="USA - North Dakota">North Dakota</option>
+                    <option value="USA - Ohio">Ohio</option>
+                    <option value="USA - Oklahoma">Oklahoma</option>
+                    <option value="USA - Oregon">Oregon</option>
+                    <option value="USA - Pennsylvania">Pennsylvania</option>
+                    <option value="USA - Rhode Island">Rhode Island</option>
+                    <option value="USA - South Carolina">South Carolina</option>
+                    <option value="USA - South Dakota">South Dakota</option>
+                    <option value="USA - Tennessee">Tennessee</option>
+                    <option value="USA - Texas">Texas</option>
+                    <option value="USA - Utah">Utah</option>
+                    <option value="USA - Vermont">Vermont</option>
+                    <option value="USA - Virginia">Virginia</option>
+                    <option value="USA - Washington">Washington</option>
+                    <option value="USA - West Virginia">West Virginia</option>
+                    <option value="USA - Wisconsin">Wisconsin</option>
+                    <option value="USA - Wyoming">Wyoming</option>
+                </optgroup>
+                
+                <optgroup label="🇨🇦 Canada (Provinces)">
+                    <option value="Canada - Alberta">Alberta</option>
+                    <option value="Canada - British Columbia">British Columbia</option>
+                    <option value="Canada - Manitoba">Manitoba</option>
+                    <option value="Canada - New Brunswick">New Brunswick</option>
+                    <option value="Canada - Newfoundland and Labrador">Newfoundland and Labrador</option>
+                    <option value="Canada - Northwest Territories">Northwest Territories</option>
+                    <option value="Canada - Nova Scotia">Nova Scotia</option>
+                    <option value="Canada - Nunavut">Nunavut</option>
+                    <option value="Canada - Ontario">Ontario</option>
+                    <option value="Canada - Prince Edward Island">Prince Edward Island</option>
+                    <option value="Canada - Quebec">Quebec</option>
+                    <option value="Canada - Saskatchewan">Saskatchewan</option>
+                    <option value="Canada - Yukon">Yukon</option>
+                </optgroup>
+                
+                <optgroup label="🇬🇧 United Kingdom">
+                    <option value="UK - England">England</option>
+                    <option value="UK - Scotland">Scotland</option>
+                    <option value="UK - Wales">Wales</option>
+                    <option value="UK - Northern Ireland">Northern Ireland</option>
+                </optgroup>
+                
+                <optgroup label="🇪🇺 Europe (Countries)">
+                    <option value="Europe - Austria">Austria</option>
+                    <option value="Europe - Belgium">Belgium</option>
+                    <option value="Europe - Bulgaria">Bulgaria</option>
+                    <option value="Europe - Croatia">Croatia</option>
+                    <option value="Europe - Cyprus">Cyprus</option>
+                    <option value="Europe - Czech Republic">Czech Republic</option>
+                    <option value="Europe - Denmark">Denmark</option>
+                    <option value="Europe - Estonia">Estonia</option>
+                    <option value="Europe - Finland">Finland</option>
+                    <option value="Europe - France">France</option>
+                    <option value="Europe - Germany">Germany</option>
+                    <option value="Europe - Greece">Greece</option>
+                    <option value="Europe - Hungary">Hungary</option>
+                    <option value="Europe - Ireland">Ireland</option>
+                    <option value="Europe - Italy">Italy</option>
+                    <option value="Europe - Latvia">Latvia</option>
+                    <option value="Europe - Lithuania">Lithuania</option>
+                    <option value="Europe - Luxembourg">Luxembourg</option>
+                    <option value="Europe - Malta">Malta</option>
+                    <option value="Europe - Netherlands">Netherlands</option>
+                    <option value="Europe - Poland">Poland</option>
+                    <option value="Europe - Portugal">Portugal</option>
+                    <option value="Europe - Romania">Romania</option>
+                    <option value="Europe - Slovakia">Slovakia</option>
+                    <option value="Europe - Slovenia">Slovenia</option>
+                    <option value="Europe - Spain">Spain</option>
+                    <option value="Europe - Sweden">Sweden</option>
+                </optgroup>
+                
+                <optgroup label="🌍 Other Countries">
+                    <option value="Other - Argentina">Argentina</option>
+                    <option value="Other - Australia">Australia</option>
+                    <option value="Other - Brazil">Brazil</option>
+                    <option value="Other - Chile">Chile</option>
+                    <option value="Other - China">China</option>
+                    <option value="Other - Colombia">Colombia</option>
+                    <option value="Other - Egypt">Egypt</option>
+                    <option value="Other - Hong Kong">Hong Kong</option>
+                    <option value="Other - India">India</option>
+                    <option value="Other - Indonesia">Indonesia</option>
+                    <option value="Other - Israel">Israel</option>
+                    <option value="Other - Japan">Japan</option>
+                    <option value="Other - Malaysia">Malaysia</option>
+                    <option value="Other - Mexico">Mexico</option>
+                    <option value="Other - New Zealand">New Zealand</option>
+                    <option value="Other - Nigeria">Nigeria</option>
+                    <option value="Other - Pakistan">Pakistan</option>
+                    <option value="Other - Philippines">Philippines</option>
+                    <option value="Other - Russia">Russia</option>
+                    <option value="Other - Saudi Arabia">Saudi Arabia</option>
+                    <option value="Other - Singapore">Singapore</option>
+                    <option value="Other - South Africa">South Africa</option>
+                    <option value="Other - South Korea">South Korea</option>
+                    <option value="Other - Switzerland">Switzerland</option>
+                    <option value="Other - Taiwan">Taiwan</option>
+                    <option value="Other - Thailand">Thailand</option>
+                    <option value="Other - Turkey">Turkey</option>
+                    <option value="Other - Ukraine">Ukraine</option>
+                    <option value="Other - United Arab Emirates">United Arab Emirates</option>
+                    <option value="Other - Vietnam">Vietnam</option>
+                </optgroup>
+            </select>
+        </div>
+    </div>
+
+    <!-- Hero Banner -->
+    <section class="hero" style="max-width: 100%; padding: 0;">
+        <div class="hero-content">
+            <h1>Botanical Masterpieces</h1>
+            <p>Investment-grade, highly stable variegated flowers and rare plants for the discerning global collector.</p>
+            <a href="#shop" class="cta-btn">View Private Vault</a>
+        </div>
+    </section>
+
+    <!-- Persuasive Writeup / Sales Hook -->
+    <section id="why-buy" style="background-color: var(--white); padding: 3rem 2rem; border-top: 1px solid rgba(0,0,0,0.04);">
+        <div style="max-width:900px; margin:0 auto; text-align:center;">
+            <h2 class="section-title">Own something unforgettable</h2>
+            <p class="section-subtitle">Each specimen in our vault is unique — slow-grown, expertly curated, and shipped with white-glove care. Limited stock, private sourcing, and lifetime access to our cultivation experts mean these plants aren't just decorations — they're botanical investments.</p>
+            <p style="margin-top:1rem; font-size:1rem; color:#444;">Shop confidently — every purchase includes expert acclimation guidance, insured overnight shipping, and an industry-standard live health guarantee. Discover the specimen that will transform your collection.</p>
+            <a href="#shop" class="cta-btn" style="margin-top:1.25rem; display:inline-block;">Explore The Private Stock</a>
+        </div>
+    </section>
+
+    <!-- Product Grid Section -->
+    <section id="shop">
+        <h2 class="section-title">The Private Stock</h2>
+        <p class="section-subtitle">A curated selection of the world's most exclusive botanical mutations. Each listing shows the unique individual specimen currently available for acquisition.</p>
+        
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="rarity-tag">Ultra Rare</span>
+                    <img class="product-img" src="https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&q=80&w=600" alt="Variegated Monstera Obliqua Peru">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Monstera Obliqua Peru (Variegated)</h3>
+                    <p class="product-desc">Extremely delicate, lace-like fenestrations accented by cream-white sectoral variegation. Highly coveted.</p>
+                    <span class="product-price">$89.00</span>
+                    <button class="buy-btn" onclick="orderViaWhatsApp('Monstera Obliqua Peru (Variegated)', '$3,800.00')">Acquire via WhatsApp</button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="rarity-tag">Limited</span>
+                    <img class="product-img" src="https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&q=80&w=600" alt="Philodendron Caramel Marble">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Philodendron Caramel Marble</h3>
+                    <p class="product-desc">Showcases a brilliant range of forest green, butterscotch, and fiery orange-pink serrated leaves.</p>
+                    <span class="product-price">$250.00</span>
+                    <button class="buy-btn" onclick="orderViaWhatsApp('Philodendron Caramel Marble', '$1,650.00')">Acquire via WhatsApp</button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="rarity-tag">Ultra Rare</span>
+                    <img class="product-img" src="https://images.unsplash.com/photo-1596547609652-9cf5d8d76921?auto=format&fit=crop&q=80&w=600" alt="Philodendron Billietiae Variegated">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Philodendron Billietiae (Variegated)</h3>
+                    <p class="product-desc">Striking long leaves with bright orange petioles and heavy, high-contrast yellow marbling.</p>
+                    <span class="product-price">€$289.90</span>
+                    <button class="buy-btn" onclick="orderViaWhatsApp('Philodendron Billietiae (Variegated)', '$2,400.00')">Acquire via WhatsApp</button>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="rarity-tag">Premium</span>
+                    <img class="product-img" src="https://images.unsplash.com/photo-1545241047-6083a3684587?auto=format&fit=crop&q=80&w=600" alt="Musa Aeae Variegated Banana">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Musa Aeae (Variegated Banana)</h3>
+                    <p class="product-desc">Gorgeous camouflage variegation pattern of soft whites, pale mint, and rich greens. A true showstopper.</p>
+                    <span class="product-price">$450.00</span>
+                    <button class="buy-btn" onclick="orderViaWhatsApp('Musa Aeae (Variegated Banana)', '$950.00')">Acquire via WhatsApp</button>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="rarity-tag">Exclusive</span>
+                    <img class="product-img" src="https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&q=80&w=600" alt="Monstera Adansonii Archipelago">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Monstera Adansonii (Archipelago)</h3>
+                    <p class="product-desc">The Swedish-clone lineage. Highly stable, sharp half-moon white variegation across all leaves.</p>
+                    <span class="product-price">$600.00</span>
+                    <button class="buy-btn" onclick="orderViaWhatsApp('Monstera Adansonii (Archipelago)', '$1,850.00')">Acquire via WhatsApp</button>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="rarity-tag">One-of-a-Kind</span>
+                    <img class="product-img" src="https://images.unsplash.com/photo-1596547609652-9cf5d8d76921?auto=format&fit=crop&q=80&w=600" alt="Shenzhen Nongke Orchid Hybrid">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Nongke Variegated Orchid Hybrid</h3>
+                    <p class="product-desc">An elite, laboratory-cultivated orchid displaying delicate patterned blooms and cream-striped foliage.</p>
+                    <span class="product-price">$4,500.00</span>
+                    <button class="buy-btn" onclick="orderViaWhatsApp('Nongke Variegated Orchid Hybrid', '$4,500.00')">Acquire via WhatsApp</button>
+                </div>
+            </div>
+
+            <!-- Product 7 -->
+            
+            
+    </div>
+
+    </section>
+
+    <!-- Top Ten Priciest Houseplants -->
+    
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="rarity-tag">Ultra Rare</span>
+                    <img class="product-img" src="https://source.unsplash.com/600x400/?monstera,obliqua" alt="Monstera obliqua">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Monstera obliqua</h3>
+                    <p class="product-desc">The rarest collector specimen — delicate fenestrations and extreme rarity make it the market's crown jewel.</p>
+                    <span class="product-price">$25,000</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="rarity-tag">Rare</span>
+                    <img class="product-img" src="https://source.unsplash.com/600x400/?philodendron,billietiae" alt="Philodendron billietiae">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Philodendron billietiae 'Variegata'</h3>
+                    <p class="product-desc">High-contrast marbling and strong collector demand.</p>
+                    <span class="product-price">$8,000</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="rarity-tag">Rare</span>
+                    <img class="product-img" src="https://source.unsplash.com/600x400/?philodendron,gloriosum" alt="Philodendron gloriosum">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Philodendron gloriosum 'Variegata'</h3>
+                    <p class="product-desc">Velvety leaves and dramatic variegation — prized by collectors and designers.</p>
+                    <span class="product-price">$7,500</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="rarity-tag">Limited</span>
+                    <img class="product-img" src="https://source.unsplash.com/600x400/?monstera,albo" alt="Monstera albo">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Monstera albo 'Albo Variegata'</h3>
+                    <p class="product-desc">Stable sectoral variegation has kept this cultivar commanding premium prices.</p>
+                    <span class="product-price">$6,000</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="rarity-tag">Exclusive</span>
+                    <img class="product-img" src="https://source.unsplash.com/600x400/?anthurium,crystallinum" alt="Anthurium crystallinum">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Anthurium crystallinum (variegata)</h3>
+                    <p class="product-desc">Large, sculptural foliage with striking variegation — a staple in high-end collections.</p>
+                    <span class="product-price">$6,500</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="rarity-tag">Exclusive</span>
+                    <img class="product-img" src="https://source.unsplash.com/600x400/?anthurium,forgetii" alt="Anthurium forgetii">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Anthurium forgetii (variegata)</h3>
+                    <p class="product-desc">Compact, rounded leaves and rare variegation make this highly collectible.</p>
+                    <span class="product-price">$5,500</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="rarity-tag">Premium</span>
+                    <img class="product-img" src="https://source.unsplash.com/600x400/?monstera,thai%20constellation" alt="Monstera Thai Constellation">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Monstera deliciosa 'Thai Constellation'</h3>
+                    <p class="product-desc">Stable tissue-cultured variegation sought after for large, display-ready specimens.</p>
+                    <span class="product-price">$4,500</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="rarity-tag">Premium</span>
+                    <img class="product-img" src="https://source.unsplash.com/600x400/?philodendron,pink%20princess" alt="Philodendron Pink Princess">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Philodendron 'Pink Princess'</h3>
+                    <p class="product-desc">Iconic pink sectors on dark foliage — a social-media and collector favorite.</p>
+                    <span class="product-price">$3,800</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="rarity-tag">Limited</span>
+                    <img class="product-img" src="https://source.unsplash.com/600x400/?monstera,adansonii" alt="Monstera Adansonii Archipelago">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Monstera adansonii 'Archipelago'</h3>
+                    <p class="product-desc">Distinctive variegation and fenestrations make this a high-demand, high-value vine.</p>
+                    <span class="product-price">$2,500</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="rarity-tag">Limited</span>
+                    <img class="product-img" src="https://source.unsplash.com/600x400/?alocasia,frydek" alt="Alocasia Frydek">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Alocasia 'Frydek' (Variegated)</h3>
+                    <p class="product-desc">Highly sculptural, velvety foliage and strong collector demand for variegated forms.</p>
+                    <span class="product-price">$2,000</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Variegation / About Section -->
+    <section id="about" class="about-section" style="max-width: 100%; padding: 0;">
+        <div class="about-container">
+            <img class="about-img" src="https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&q=80&w=600" alt="Variegated Leaf Detail">
+            <div class="about-content">
+                <h2>The Premium Nature of Variegation</h2>
+                <p>Variegation is a rare genetic mutation that limits a plant's ability to produce chlorophyll in specific sectors of its leaves and petals. This lack of green pigment results in visually breathtaking patterns of stark white, cream, and warm gold.</p>
+                <p>Because these variegated areas do not photosynthesize, the plants grow significantly slower and require specialized, precise care. It is this slower growth, combined with unstable genetics and overwhelming global demand, that makes these specimens true botanical investments.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust / Guarantees Section -->
+    <section id="guarantees">
+        <div class="guarantees">
+            <div class="guarantee-card">
+                <h3>White-Glove Courier Shipping</h3>
+                <p>To preserve foliage integrity, each specimen is carefully insulated, stabilized using custom framing, and shipped with express overnight delivery inside temperature-controlled packaging.</p>
+            </div>
+            <div class="guarantee-card">
+                <h3>Live Health Guarantee</h3>
+                <p>We guarantee the pristine health and live arrival of every plant. If any transit stress occurs, we work with you directly to replace or refund your investment within 24 hours.</p>
+            </div>
+            <div class="guarantee-card">
+                <h3>Direct Expert Consultation</h3>
+                <p>Acquiring a luxury plant comes with ongoing support. Buyers retain lifelong access to our greenhouse experts for customized care, acclimatization schedules, and growth advice.</p>
+            </div>
+            <div class="guarantee-card">
+                <h3>Delivery & Insurance Assurance</h3>
+                <p>All orders ship insured with real-time tracking and require signature upon delivery. We use climate-controlled, shock-protected packaging and partner with white-glove couriers to minimise transit risk. If a specimen arrives damaged, we will replace it or issue a full refund within 48 hours after photographic proof — and provide a dedicated shipping specialist to manage your case.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact">
+        <div class="contact-container">
+            <h2>Get In Touch</h2>
+            <p class="contact-description">
+                Have questions about a specific specimen? Want to discuss custom acquisitions or bulk orders? Our specialists are available via WhatsApp to provide personalized consultation and finalize your botanical investment.
+            </p>
+            <button class="contact-whatsapp-btn" onclick="contactViaWhatsApp()">
+                <span class="whatsapp-icon">📱</span>
+                Chat on WhatsApp
+            </button>
+            <div class="contact-info">
+                <p>💬 Direct messaging via WhatsApp for fastest response</p>
+                <p>🌍 Available to customers worldwide — USA, UK, Canada, Europe & Beyond</p>
+                <p>⏱️ Instant response — we reply immediately</p>
+            </div>
+            <div class="custom-request-section">
+                <h3>Not Seeing the Specimen You Want?</h3>
+                <p>Tap below to open WhatsApp and request a custom specimen directly. Tell us what you need, and we will source it for you.</p>
+                <button class="custom-request-btn" onclick="customSpecimenRequest()">
+                    <span class="request-icon">🔍</span>
+                    Contact WhatsApp for Custom Specimen
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h2>Variegated Gallery</h2>
+                <p>Preserving and distributing the world's most exceptional botanical mutations.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#shop">The Collection</a></li>
+                    <li><a href="#about">The Science</a></li>
+                    <li><a href="#guarantees">Shipping Standards</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-share">
+            <h4>Share This Page</h4>
+            <div class="share-buttons">
+                <a id="shareFacebook" class="share-btn" href="#" target="_blank" rel="noopener">Facebook</a>
+                <a id="shareTwitter" class="share-btn" href="#" target="_blank" rel="noopener">Twitter</a>
+                <a id="shareLinkedIn" class="share-btn" href="#" target="_blank" rel="noopener">LinkedIn</a>
+                <a id="shareWhatsApp" class="share-btn" href="#" target="_blank" rel="noopener">WhatsApp</a>
+            </div>
+        </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Variegated Gallery. All rights reserved. Private botanical acquisitions finalized securely via WhatsApp direct message.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript For WhatsApp Ordering -->
+    <script>
+        // REPLACE the number below with your actual WhatsApp phone number.
+        // You may include a leading '+' or spaces, but the code will normalize it.
+        // Example: '237675318953', '+237675318953', or '237 675 318 953'.
+        const WHATSAPP_NUMBER = '+237675318953';
+
+        function contactViaWhatsApp() {
+            const normalizedNumber = WHATSAPP_NUMBER.replace(/\D/g, '');
+
+            if (!normalizedNumber || normalizedNumber === '1234567890') {
+                alert("Please open the index.html file in a text editor and update the WHATSAPP_NUMBER variable inside the <script> tag at the bottom with your real phone number.");
+                return;
+            }
+
+            const contactMessage = `Hello! I would like to inquire about your variegated houseplant collection and discuss specimen availability, pricing, and delivery options for my region.`;
+            const encodedMessage = encodeURIComponent(contactMessage);
+            const whatsappUrl = `https://wa.me/${normalizedNumber}?text=${encodedMessage}`;
+
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function customSpecimenRequest() {
+            const normalizedNumber = WHATSAPP_NUMBER.replace(/\D/g, '');
+
+            if (!normalizedNumber || normalizedNumber === '1234567890') {
+                alert("Please open the index.html file in a text editor and update the WHATSAPP_NUMBER variable inside the <script> tag at the bottom with your real phone number.");
+                return;
+            }
+
+            const specimenName = prompt("Enter the specimen name you'd like us to source, or leave blank to contact us directly:");
+            const requestedSpecimen = specimenName && specimenName.trim() !== ''
+                ? `🌱 Desired Specimen: ${specimenName.trim()}\n\n`
+                : '';
+
+            const customMessage = `Hello! I would like to request a custom variegated specimen or ask about a plant not listed on the page.\n\n` +
+                                  requestedSpecimen +
+                                  `Could you please provide current availability, pricing, and shipping details for my region?\n\n` +
+                                  `Thank you!`;
+
+            const encodedMessage = encodeURIComponent(customMessage);
+            const whatsappUrl = `https://wa.me/${normalizedNumber}?text=${encodedMessage}`;
+
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function orderViaWhatsApp(productName, productPrice) {
+            const normalizedNumber = WHATSAPP_NUMBER.replace(/\D/g, '');
+            const shippingLocation = document.getElementById('shippingLocation')?.value || 'Not specified';
+
+            if (!normalizedNumber || normalizedNumber === '1234567890') {
+                alert("Please open the index.html file in a text editor and update the WHATSAPP_NUMBER variable inside the <script> tag at the bottom with your real phone number.");
+                return;
+            }
+
+            if (!shippingLocation || shippingLocation === '') {
+                alert("Please select your shipping region before placing an order.");
+                return;
+            }
+
+            // Create a pre-filled, URL-safe message for the seller
+            const baseMessage = `Hello! I am viewing your premium catalog and would like to acquire this rare specimen:\n\n` +
+                                `🌱 Specimen: ${productName}\n` +
+                                `💰 Asking Price: ${productPrice}\n` +
+                                `📍 Shipping Region: ${shippingLocation}\n\n` +
+                                `Please confirm if this specific specimen is still available in your vault and advise on payment, final pricing, and delivery options for my region. Thank you.`;
+
+            const encodedMessage = encodeURIComponent(baseMessage);
+            const whatsappUrl = `https://wa.me/${normalizedNumber}?text=${encodedMessage}`;
+
+            // Open the link in a new tab
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function initSocialShareLinks() {
+            const pageUrl = encodeURIComponent(window.location.href);
+            const shareText = encodeURIComponent('Discover this premium variegated plant collection and rare specimen vault.');
+
+            document.getElementById('shareFacebook').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+            document.getElementById('shareTwitter').href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${shareText}`;
+            document.getElementById('shareLinkedIn').href = `https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${shareText}`;
+            document.getElementById('shareWhatsApp').href = `https://wa.me/?text=${shareText}%20${pageUrl}`;
+        }
+
+        window.addEventListener('DOMContentLoaded', initSocialShareLinks);
+        
+        // Allow customers to open product images full-size in a new tab
+        function initImagePreview() {
+            const imgs = document.querySelectorAll('.product-img');
+            imgs.forEach(img => {
+                img.addEventListener('click', (e) => {
+                    const src = img.getAttribute('src');
+                    if (!src) return;
+                    // open image in new tab/window
+                    window.open(src, '_blank', 'noopener');
+                });
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            try { initImagePreview(); } catch (e) { /* fail silently */ }
+            try { initShippingSelector(); } catch (e) { /* fail silently */ }
+        });
+
+        // Persist shipping location selection in localStorage
+        function initShippingSelector() {
+            const selector = document.getElementById('shippingLocation');
+            if (!selector) return;
+
+            // Restore saved location if available
+            const savedLocation = localStorage.getItem('shippingLocation');
+            if (savedLocation) {
+                selector.value = savedLocation;
+            }
+
+            // Save location whenever it changes
+            selector.addEventListener('change', (e) => {
+                localStorage.setItem('shippingLocation', e.target.value);
+            });
+        }
+    </script>
+</body>
+</html>
